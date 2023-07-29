@@ -12,6 +12,7 @@ public class PlayerController : Character
     [SerializeField] GameObject _bulletPrefab;
     [SerializeField] EnemySpawner _enemySpawner;
     [SerializeField] int[] _experiencesLevels;
+    [SerializeField] UpgradesManaeger _upgradesManaeger;
  
     private Vector2 _movementInput;
     private Rigidbody2D _playerRigidbody;
@@ -90,8 +91,7 @@ public class PlayerController : Character
         float minDistance = float.MaxValue;
 
         foreach(var enemy in _enemySpawner.SpawnedEnemys)
-        {
-            //if(enemy.IsDead) continue;            
+        {                       
             float distance = (enemy.transform.position - transform.position).magnitude;
             if (distance < minDistance)
             {
@@ -105,8 +105,14 @@ public class PlayerController : Character
     public void AddExperience(int value)
     {
         _experience += value;
-        _currentLevel = Array.FindLastIndex(_experiencesLevels, e => _experience >= e);
+        var newLevel = Array.FindLastIndex(_experiencesLevels, e => _experience >= e);
         Debug.Log("Level: " + _currentLevel + ", Exp: " + _experience);
+
+        if(newLevel >= _currentLevel)
+        {
+            _upgradesManaeger.Suggest();
+            _currentLevel = newLevel;
+        }
     }
 
     [ContextMenu("AddExperience")]
