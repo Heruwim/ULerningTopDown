@@ -21,6 +21,7 @@ public class PlayerController : Character
     private int _currentLevel;
     private int _experience;
 
+    public int BulletCount { get; set; } = 1;
 
     private void Start()
     {
@@ -73,34 +74,23 @@ public class PlayerController : Character
         {
             _shootTimer = 0;
 
+            ShootProcess();
+        }
+    }
+
+    private void ShootProcess()
+    {
+        Enemy closest = Helper.FindClosestEnemy(_enemySpawner, transform);
+
+        if (closest != null)
+        {
             GameObject bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
             Rigidbody2D bulletRigidbody2D = bullet.GetComponent<Rigidbody2D>();
-            Enemy closest = FindClosestEnemy();
-            if (closest != null)
-            {
             Vector3 direction = (closest.transform.position - transform.position).normalized;
             bulletRigidbody2D.AddForce(direction * _shootSpeed);
-            }
         }
     }
 
-    private Enemy FindClosestEnemy()
-    {
-        Enemy closestEnemy = null;
-
-        float minDistance = float.MaxValue;
-
-        foreach(var enemy in _enemySpawner.SpawnedEnemys)
-        {                       
-            float distance = (enemy.transform.position - transform.position).magnitude;
-            if (distance < minDistance)
-            {
-                closestEnemy = enemy;
-                minDistance = distance;
-            }
-        }
-        return closestEnemy;
-    }
 
     public void AddExperience(int value)
     {

@@ -2844,7 +2844,7 @@ MonoBehaviour:
   _upgrades:
   - {fileID: 1590048450}
   - {fileID: 1590048449}
-  _player: {fileID: 0}
+  _player: {fileID: 1836565271}
 --- !u!4 &1590048448
 Transform:
   m_ObjectHideFlags: 0
@@ -2872,8 +2872,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93196b99921834b41b574541e34bf5be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _title: Test 2
-  _icon: {fileID: 7293598183456022363, guid: 1ddc9afd21fec77489b1248d18f31b68, type: 3}
+  _title: Rocket
+  _icon: {fileID: 837517196756356485, guid: 131e485692e27e84c86170dad18cda85, type: 3}
+  _launcherPrefab: {fileID: 5321902112121691870, guid: 34a7eaba436e72f40a197e95d69fa2b7,
+    type: 3}
 --- !u!114 &1590048450
 MonoBehaviour:
   m_ObjectHideFlags: 0
