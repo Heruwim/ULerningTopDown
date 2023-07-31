@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 5
+  _destroyOnHit: 0
 --- !u!50 &3626660687823783664
 Rigidbody2D:
   serializedVersion: 4
@@ -200,6 +201,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 30
   _moveSpeed: 0.5
+  _experiencePickup: {fileID: 1441667319597576968, guid: b08d7ec372236744a9a02c631afc46ad,
+    type: 3}
   _shootInterval: 1
   _shootSpeed: 100
   _bulletPrefab: {fileID: 5984390623046182361, guid: e0bae97bd20d6744f97e3e7b0a5dcabd,

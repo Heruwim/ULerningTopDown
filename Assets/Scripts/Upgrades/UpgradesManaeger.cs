@@ -6,6 +6,7 @@ public class UpgradesManaeger : MonoBehaviour
 {
     [SerializeField] private UpgradeUIManager _uiManager;
     [SerializeField] private Upgrade[] _upgrades;
+    [SerializeField] private PlayerController _player;
     
     private List<Upgrade> _availableUpgrades;
 
@@ -19,7 +20,7 @@ public class UpgradesManaeger : MonoBehaviour
         if (_availableUpgrades.Count > 0)
         {
             Time.timeScale = 0f;
-            _uiManager.Show(_availableUpgrades);
+            _uiManager.Show(_availableUpgrades, _player);
         }
     }
 

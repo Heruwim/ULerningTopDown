@@ -104,6 +104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 10
   _moveSpeed: 0.8
+  _experiencePickup: {fileID: 1441667319597576968, guid: b08d7ec372236744a9a02c631afc46ad,
+    type: 3}
 --- !u!114 &7228437016806765335
 MonoBehaviour:
   m_ObjectHideFlags: 0
