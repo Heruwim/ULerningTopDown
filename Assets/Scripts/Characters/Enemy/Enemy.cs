@@ -3,7 +3,7 @@ using UnityEngine;
 public class Enemy : Character 
 {
     [SerializeField] private ExperiencePickup _experiencePickup;
-
+       
     protected Transform _target;
 
     protected virtual void Start()
@@ -19,6 +19,6 @@ public class Enemy : Character
 
     protected override void OnDead()
     {
-        Instantiate(_experiencePickup, transform.position, Quaternion.identity);
+        Instantiate(_experiencePickup, transform.position, Quaternion.identity);        
     }
 }

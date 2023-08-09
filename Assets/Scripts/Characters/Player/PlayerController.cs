@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -20,7 +21,7 @@ public class PlayerController : Character
     private float _shootTimer;
     private int _currentLevel;
     private int _experience;
-
+    private const float BulletsInterval = 0.25f;
     public int BulletCount { get; set; } = 1;
 
     private void Start()
@@ -74,20 +75,25 @@ public class PlayerController : Character
         {
             _shootTimer = 0;
 
-            ShootProcess();
+            StartCoroutine(ShootProcess());
         }
     }
 
-    private void ShootProcess()
+    private IEnumerator ShootProcess()
     {
-        Enemy closest = Helper.FindClosestEnemy(_enemySpawner, transform);
-
-        if (closest != null)
+        for (int i = 0; i < BulletCount; i++)
         {
-            GameObject bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
-            Rigidbody2D bulletRigidbody2D = bullet.GetComponent<Rigidbody2D>();
-            Vector3 direction = (closest.transform.position - transform.position).normalized;
-            bulletRigidbody2D.AddForce(direction * _shootSpeed);
+            Enemy closest = Helper.FindClosestEnemy(_enemySpawner, transform);
+
+            if (closest != null)
+            {
+                GameObject bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
+                Rigidbody2D bulletRigidbody2D = bullet.GetComponent<Rigidbody2D>();
+                Vector3 direction = (closest.transform.position - transform.position).normalized;
+                bulletRigidbody2D.AddForce(direction * _shootSpeed);
+            }
+
+            yield return new WaitForSeconds(BulletsInterval);
         }
     }
 

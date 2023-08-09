@@ -9,7 +9,7 @@ using UnityEngine;
 
             float minDistance = float.MaxValue;
 
-            foreach (var enemy in spawner.SpawnedEnemys)
+            foreach (var enemy in spawner.SpawnedEnemies)
             {
                 float distance = (enemy.transform.position - source.position).magnitude;
                 if (distance < minDistance)

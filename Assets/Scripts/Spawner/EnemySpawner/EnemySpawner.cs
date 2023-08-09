@@ -22,7 +22,8 @@ public class EnemySpawner : MonoBehaviour
     private Wawe CurrentWawe => _wawes[_waveIndex];
     private bool HasWaves => _waveIndex < _wawes.Length;
 
-    public List<Enemy> SpawnedEnemys { get; } = new List<Enemy>();
+    public List<Enemy> SpawnedEnemies { get; } = new List<Enemy>();
+
     private void Update()
     {
         if(HasWaves && Time.timeSinceLevelLoad > CurrentWawe.SpawnTime)
@@ -39,7 +40,12 @@ public class EnemySpawner : MonoBehaviour
         {
             var position = _center.position + (Vector3) UnityEngine.Random.insideUnitCircle * _spawnRadius;
             var enemy = Instantiate(CurrentWawe.EnemyPrefab, position, Quaternion.identity);
-            SpawnedEnemys.Add(enemy);
+            SpawnedEnemies.Add(enemy);
         }
+    }
+
+    public void OnEnemyDead(Enemy enemy)
+    {
+        SpawnedEnemies.Remove(enemy);
     }
 }
